@@ -116,3 +116,13 @@ select {
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.7); /* Add a subtle box shadow */
   }
   
+  /* Style to display elements side by side */
+label, select, .clever-revenue {
+  display: inline-block;
+  vertical-align: top; /* Align elements vertically */
+}
+
+/* Optional: Add margin between elements */
+label, select {
+  margin-right: 10px; /* Adjust as needed */
+}
