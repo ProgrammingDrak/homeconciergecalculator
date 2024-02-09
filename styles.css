@@ -1,128 +1,110 @@
-/* Reset some default browser styles for consistency */
-body, h1, h2, h3, p, ul, li {
+/* Reset default browser styles */
+html, body, div, span, h1, h2, h3, h4, h5, h6, p, a, img, ol, ul, li, figure, figcaption, blockquote, dl, dt, dd, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, footer, header, nav, section {
   margin: 0;
   padding: 0;
-  background-color: bisque;
+  border: 0;
+  font: inherit;
+  vertical-align: baseline;
 }
 
-/* Set a base font size and family for better readability */
+/* Basic styling */
 body {
-  font-family: 'Arial', sans-serif;
-  font-size: 16px;
-  line-height: 1.5;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Change font family */
+  background-color: #f0f8ff; /* Light blue background */
+  color: #333; /* Dark text color for better visibility */
 }
 
-/* Style the header */
-header {
-  background-color: #333;
-  color: #fff;
-  padding: 10px;
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.header {
+  background-color: #ffdf00; /* Gold header background */
+  padding: 20px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Titles styling */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Change font family */
+  font-weight: bold; /* Make titles bold */
+  color: #333; /* Dark title text color */
+  line-height: 1.2; /* Adjust line height for better readability */
+  margin-bottom: 10px; /* Add some space below titles */
+}
+
+h1 {
+  font-size: 36px; /* Adjust font size for h1 */
+}
+
+h2 {
+  font-size: 24px; /* Adjust font size for h2 */
+}
+
+h3 {
+  font-size: 20px; /* Adjust font size for h3 */
+}
+
+/* You can continue with h4, h5, and h6 if needed */
+
+
+.header .logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333; /* Dark logo text color */
+}
+
+.navbar {
+  margin-top: 20px;
+}
+
+.navbar ul {
+  display: flex;
+  list-style: none;
+}
+
+.navbar li {
+  margin-right: 20px;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: #333; /* Dark navigation text color */
+  font-weight: bold;
+}
+
+.hero {
+  background-color: rgba(255, 223, 0, 0.5); /* Gold hero background with opacity */
+  padding: 100px 0;
   text-align: center;
 }
 
-/* Style the main content area */
-main {
-  max-width: 800px;
-  margin: 20px auto;
-  padding: 20px;
+.hero h1 {
+  font-size: 48px; /* Adjust title font size */
+  margin-bottom: 20px;
+  color: #333; /* Dark hero text color */
 }
 
-/* Style links */
-a {
-  color: #007bff;
-  text-decoration: none;
+.hero p {
+  font-size: 20px;
+  color: #333; /* Dark hero text color */
 }
 
-a:hover {
-  text-decoration: underline;
+.footer {
+  background-color: #ffdf00; /* Gold footer background */
+  padding: 20px 0;
+  text-align: center;
 }
 
-/* Style headings */
-h1, h2, h3 {
-  color: #333;
+.footer p {
+  color: #333; /* Dark footer text color */
 }
 
-/* Style paragraphs */
-p {
-  margin-bottom: 15px;
-}
-
-/* Style lists */
-ul, ol {
-  margin-bottom: 15px;
-}
-
-/* Style form elements */
-form {
-  max-width: 400px;
-  margin: 0 auto;
-}
-
+/* Adjust label styling */
 label {
-  display: block;
-  margin-bottom: 5px;
-}
-
-input, textarea {
-  width: 100%;
-  padding: 8px;
-  margin-bottom: 15px;
-  box-sizing: border-box;
-}
-
-/* Style buttons */
-button {
-  background-color: #007bff;
-  color: #fff;
-  padding: 10px 15px;
-  border: none;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #0056b3;
-}
-
-/* Style the dropdown button */
-select {
-    padding: 8px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background-color: #fff;
-    color: #333;
-    cursor: pointer;
-  }
-  
-  /* Style the dropdown arrow */
-  select::after {
-    content: '\25BC'; /* Unicode character for a down arrow */
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
-  }
-  
-  /* Style dropdown options */
-  select option {
-    background-color: #fff;
-    color: #333;
-  }
-  
-  /* Style the dropdown when open */
-  select:focus {
-    outline: none; /* Remove the default focus outline */
-    border-color: #007bff; /* Change border color when focused */
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.7); /* Add a subtle box shadow */
-  }
-  
-  /* Style to display elements side by side */
-label, select, .clever-revenue {
-  display: inline-block;
-  vertical-align: top; /* Align elements vertically */
-}
-
-/* Optional: Add margin between elements */
-label, select {
-  margin-right: 10px; /* Adjust as needed */
+  font-size: 18px; /* Adjust label font size */
+  font-weight: bold; /* Make labels bold */
+  color: #333; /* Dark label text color */
 }
