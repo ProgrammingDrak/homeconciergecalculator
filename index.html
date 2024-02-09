@@ -5,16 +5,25 @@
     <title>Transaction Type and Commission Model Selection</title>
 </head>
 <body>
-    <h1> make this change. </h1>
-    <h1>Transaction Type and Commission Model Selection</h1>
-    <label for="transactionType">Select Transaction Type:</label>
-    <select id="transactionType" onchange="onTransactionTypeChange()">
-        <option value="buyer">Buyer</option>
-        <option value="seller">Seller</option>
+    <h1>Home Concierge Calculator</h1>
+    <label for="purchasePrice">Enter Purchase Price:</label>
+    <input type="text" size="20" id="purchasePrice" oninput="convertToNumber()">
+    <br>
+    <label for="commissionModel">Select Commission Model</label>
+    <select id="commissionModel" onchange="onCommissionModelChange()">
+        <option value="Buyer Model (No CCB)">Buyer Model (No CCB)</option>
+        <option value="Clever Cashback (new $250)">Clever Cashback (new $250)</option>
+        <option value="Clever Cashback (0.5%)">Clever Cashback (0.5%)</option>
+        <option value="Mr Cooper Buyer CCB">Mr Cooper Buyer CCB</option>
+        <option value="Mr Cooper Seller CCB">Mr Cooper Seller CCB</option>
+        <option value="Traditional Model">Traditional Model</option>
+        <option value="1.5% Model">1.5% Model</option>
     </select>
     <br>
-    <label for="commissionModel">Select Commission Model:</label>
-    <select id="commissionModel"></select>
+    <div class="clever-revenue">
+    <title>Clever's Estimated Revenue (Amount)</title>
+    <span id="cleverRevenueEstimate" class="final-amount">$0.00</span>
+    </div>
 
     <script type="text/javascript" src="calculatrhc.js"></script>
 </body>
