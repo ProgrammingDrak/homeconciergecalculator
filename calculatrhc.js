@@ -25,7 +25,7 @@ function calculateRevenue(purchasePrice, commissionModel, stateCode) {
             break;
         case "Clever Cashback (new $250)":
             cleverCashBack = 250;
-            if (purchasePrice < 50,000) {
+            if (purchasePrice < 50000) {
                 cleverCashBack = 0;
             }
             cleverReferralFee = .3;
