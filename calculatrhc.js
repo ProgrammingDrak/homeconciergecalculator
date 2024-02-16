@@ -52,7 +52,7 @@ function calculateRevenue(purchasePrice, commissionModel, stateCode) {
             if (stateCode != "CCB Eligible States") {
                 alert("Not a CCB eligible state. Please double check if eligible to receive Cashback");
             }
-            estimatedRevenue = ((purchasePrice * 0.03) * cleverReferralFee) - cleverCashBack;
+            estimatedRevenue = ((purchasePrice * buyersAgentCommission) * cleverReferralFee) - cleverCashBack;
             break;
         case "Mr. Cooper Buyer CCB":
         case "Mr. Cooper Seller CCB": 
