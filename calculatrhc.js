@@ -68,7 +68,6 @@ function calculateRevenue(purchasePrice, commissionModel, stateCode) {
                 } else if (commissionModel === "Mr. Cooper Seller CCB") { // Listing model that needs a different algorithm because it is done by reduced listing commission
                     cleverCashBack = getCooperCashback(purchasePrice);
                     estimatedRevenue = ((purchasePrice * listingAgentCommission) - cleverCashBack) * cleverReferralFee;
-                    alert(listingAgentCommission);
                     console.log("Reduced Listing Commission CCB");
                     break;
                 } else {
