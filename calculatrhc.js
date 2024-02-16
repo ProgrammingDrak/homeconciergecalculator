@@ -19,34 +19,42 @@ function calculateRevenue(purchasePrice, commissionModel, stateCode) {
     purchasePrice = Number(purchasePrice); // Data validation
 
     switch (commissionModel) {
-        case "Buyer Model (No CCB)": // *MOD* It would be best to validate this by passing the state through as well and verifying automatically
+        case "Buyer Model (No CCB)": 
             cleverReferralFee = .3;
             estimatedRevenue = (purchasePrice * buyersAgentCommission) * cleverReferralFee; // No deductions in non-CCB state
             break;
         case "Clever Cashback (new $250)":
             cleverCashBack = 250;
             cleverReferralFee = .3;
+            // Warning for incorrect CCB States
+            if (stateCode != "CCB Eligible States") {
+                alert("Not a CCB eligible state. Please double check if eligible to receive Cashback");
+            }
             estimatedRevenue = ((purchasePrice * buyersAgentCommission) * cleverReferralFee) - cleverCashBack;
             break;
         case "Clever Cashback (0.5%)": // Used for our normal lender partners
-        if (purchasePrice < 50000) {
+            if (purchasePrice < 50000) {
             // If purchasePrice is below 50,000
             cleverCashBack = 0;
-        } else if (purchasePrice >= 50000 && purchasePrice <= 150000) {
+            } else if (purchasePrice >= 50000 && purchasePrice <= 150000) {
             // If purchasePrice is between 50,000 and 150,000 (inclusive)
             cleverCashBack = 250;
-        } else {
+            } else {
             // If purchasePrice is greater than 150,000
             cleverCashBack = purchasePrice * .005;
-        }    
-        cleverReferralFee = .35;
+            }    
+            cleverReferralFee = .35;
             
+            // Warning for incorrect CCB States
+            if (stateCode != "CCB Eligible States") {
+                alert("Not a CCB eligible state. Please double check if eligible to receive Cashback");
+            }
             estimatedRevenue = ((purchasePrice * 0.03) * cleverReferralFee) - cleverCashBack;
             break;
-        case "Mr Cooper Buyer CCB":
-        case "Mr Cooper Seller CCB": 
-        cleverReferralFee = .35; // 35% referral fee for all Mr. Cooper transactions
-        // Sets the Clever Cash Back based upon the state code.
+        case "Mr. Cooper Buyer CCB":
+        case "Mr. Cooper Seller CCB": 
+            cleverReferralFee = .35; // 35% referral fee for all Mr. Cooper transactions
+            // Sets the Clever Cash Back based upon the state code.
             if (stateCode === "Alaska" || stateCode === "Iowa" || stateCode === "Oklahoma" ) { // No Buyer CCB available for Buyer/Listing in these staets
                 cleverCashBack = 0;
                 console.log("Ineligible for CCB");
@@ -54,16 +62,20 @@ function calculateRevenue(purchasePrice, commissionModel, stateCode) {
                 cleverCashBack = getCooperCashback(purchasePrice);
                 console.log("Clever Cashback is awarded via Gift Card. Full Commission charged");
             } else if (stateCode === "Oregon" || stateCode === "Mississippi") { // Only states where Seller/Buyer CCB differs
-                if (commissionModel == "Mr Cooper Buyer CCB") {
+                if (commissionModel == "Mr. Cooper Buyer CCB") {
                     cleverCashBack = 0;
                     console.log("Ineligible for CCB");
-                } else { // Listing model that needs a different algorithm because it is done by reduced listing commission
+                } else if (commissionModel === "Mr. Cooper Seller CCB") { // Listing model that needs a different algorithm because it is done by reduced listing commission
                     cleverCashBack = getCooperCashback(purchasePrice);
                     estimatedRevenue = ((purchasePrice * listingAgentCommission) - cleverCashBack) * cleverReferralFee;
+                    alert(listingAgentCommission);
                     console.log("Reduced Listing Commission CCB");
                     break;
+                } else {
+                alert("Error. Wrong Commission model");
                 }
-            } else { // All other states (including Missouri and Louisiana)
+            }
+            else { // All other states (including Missouri and Louisiana)
                 cleverCashBack = getCooperCashback(purchasePrice);
             }
 

@@ -7,10 +7,10 @@
 <body>
     <h1>Home Concierge Calculator</h1>
     <label for="purchasePrice">Enter Purchase Price:</label>
-    <input type="text" size="20" id="purchasePrice" oninput="convertToNumber()">
+    <input type="text" size="20" id="purchasePrice" oninput="onCommissionModelChange()">
     <br>
-    <label for="stateCode">States for Testing</label>
-    <select id="stateCode" name="stateCode">
+    <label for="stateCode">State (CCB Validation)</label>
+    <select id="stateCode" onchange="onCommissionModelChange()">
         <option value="Alaska">Alaska</option>
         <option value="Iowa">Iowa</option>
         <option value="Oklahoma">Oklahoma</option>
@@ -20,7 +20,7 @@
         <option value="Mississippi">Mississippi</option>
         <option value="Missouri">Missouri</option>
         <option value="Louisiana">Louisiana</option>
-        <option value="Other states">Other states</option>
+        <option value="CCB Eligible States">CCB Eligible States</option>
     </select>
     <br>
     <label for="commissionModel">Select Commission Model</label>
@@ -28,8 +28,8 @@
         <option value="Buyer Model (No CCB)">Buyer Model (No CCB)</option>
         <option value="Clever Cashback (new $250)">Clever Cashback (new $250)</option>
         <option value="Clever Cashback (0.5%)">Clever Cashback (0.5%)</option>
-        <option value="Mr Cooper Buyer CCB">Mr Cooper Buyer CCB</option>
-        <option value="Mr Cooper Seller CCB">Mr Cooper Seller CCB</option>
+        <option value="Mr. Cooper Buyer CCB">Mr. Cooper Buyer CCB</option>
+        <option value="Mr. Cooper Seller CCB">Mr. Cooper Seller CCB</option>
         <option value="Traditional Model">Traditional Model</option>
         <option value="1.5% Model">1.5% Model</option>
     </select>
