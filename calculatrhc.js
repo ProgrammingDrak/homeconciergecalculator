@@ -2,15 +2,16 @@ function onCommissionModelChange() {
     // Get the selected value from the <select> element
     const selectedCommissionModel = document.getElementById("commissionModel").value;
     const userInputPurchasePrice = document.getElementById("purchasePrice").value;
+    const userInputStateCode = document.getElementById("stateCode").value;
     
     // Call the function with the selected value
-    calculateRevenue(userInputPurchasePrice, selectedCommissionModel);
+    calculateRevenue(userInputPurchasePrice, selectedCommissionModel, userInputStateCode);
 }
 
-function calculateRevenue(purchasePrice, commissionModel) {
+function calculateRevenue(purchasePrice, commissionModel, stateCode) {
     let estimatedRevenue;
     let cleverReferralFee; // Using variable for clarity
-    let cleverCashBack; // Using veraible for clarity
+    let cleverCashBack; // Using variable for clarity
     const buyersAgentCommission = .025; // Based on 2.5% BAC - Able to edit quickly
     const listingAgentCommission = .03; // Standard listing fee
     const cleverListingAgentCommission = .015 // Clever's discounted listing fee
@@ -43,10 +44,30 @@ function calculateRevenue(purchasePrice, commissionModel) {
             estimatedRevenue = ((purchasePrice * 0.03) * cleverReferralFee) - cleverCashBack;
             break;
         case "Mr Cooper Buyer CCB":
-        case "Mr Cooper Seller CCB": // *MOD* Need to make another model for the reduced commission version
-            cleverReferralFee = .35; // 35% referral fee for all Mr. Cooper transactions
-            cleverCashBack = getCooperCashback(purchasePrice);
-            estimatedRevenue = ((purchasePrice * listingAgentCommission) * cleverReferralFee) - cleverCashBack; // Subtract Mr. Cooper based cashback for buyer
+        case "Mr Cooper Seller CCB": 
+        cleverReferralFee = .35; // 35% referral fee for all Mr. Cooper transactions
+        // Sets the Clever Cash Back based upon the state code.
+            if (stateCode === "Alaska" || stateCode === "Iowa" || stateCode === "Oklahoma" ) { // No Buyer CCB available for Buyer/Listing in these staets
+                cleverCashBack = 0;
+                console.log("Ineligible for CCB");
+            } else if (stateCode === "Kansas" || stateCode === "Tennessee") { // Full commissions and Clever Cashback is awarded as a Gift Card
+                cleverCashBack = getCooperCashback(purchasePrice);
+                console.log("Clever Cashback is awarded via Gift Card. Full Commission charged");
+            } else if (stateCode === "Oregon" || stateCode === "Mississippi") { // Only states where Seller/Buyer CCB differs
+                if (commissionModel == "Mr Cooper Buyer CCB") {
+                    cleverCashBack = 0;
+                    console.log("Ineligible for CCB");
+                } else { // Listing model that needs a different algorithm because it is done by reduced listing commission
+                    cleverCashBack = getCooperCashback(purchasePrice);
+                    estimatedRevenue = ((purchasePrice * listingAgentCommission) - cleverCashBack) * cleverReferralFee;
+                    console.log("Reduced Listing Commission CCB");
+                    break;
+                }
+            } else { // All other states (including Missouri and Louisiana)
+                cleverCashBack = getCooperCashback(purchasePrice);
+            }
+
+            estimatedRevenue = ((purchasePrice * listingAgentCommission) * cleverReferralFee) - cleverCashBack;
             break;
         case "Traditional Model": // Properties under 100k have no guarantee of savings
             cleverReferralFee = .3

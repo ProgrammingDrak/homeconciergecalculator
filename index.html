@@ -9,6 +9,20 @@
     <label for="purchasePrice">Enter Purchase Price:</label>
     <input type="text" size="20" id="purchasePrice" oninput="convertToNumber()">
     <br>
+    <label for="stateCode">States for Testing</label>
+    <select id="stateCode" name="stateCode">
+        <option value="Alaska">Alaska</option>
+        <option value="Iowa">Iowa</option>
+        <option value="Oklahoma">Oklahoma</option>
+        <option value="Kansas">Kansas</option>
+        <option value="Tennessee">Tennessee</option>
+        <option value="Oregon">Oregon</option>
+        <option value="Mississippi">Mississippi</option>
+        <option value="Missouri">Missouri</option>
+        <option value="Louisiana">Louisiana</option>
+        <option value="Other states">Other states</option>
+    </select>
+    <br>
     <label for="commissionModel">Select Commission Model</label>
     <select id="commissionModel" onchange="onCommissionModelChange()">
         <option value="Buyer Model (No CCB)">Buyer Model (No CCB)</option>
