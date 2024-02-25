@@ -5,9 +5,274 @@
     <link rel="preconnect" href="//fonts.gstatic.com" crossorigin>
     <link href="//fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="styles.css">
+    <!-- <link rel="stylesheet" href="styles.css"> -->
     <title>Home Concierge Calculator</title>
 </head>
+<style>
+  /* Reset default browser styles */
+html, body, div, span, h1, h2, h3, h4, h5, h6, p, a, img, ol, ul, li, figure, figcaption, blockquote, dl, dt, dd, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, footer, header, nav, section {
+  margin: 5px;
+  padding: 0;
+  border: 0;
+  font-family: "Playfair Display", serif;
+  vertical-align: baseline;
+}
+
+/* Basic styling */
+body {
+  font-family: "Playfair Display", serif;
+  background-color: #f0f8ff; /* Light blue background */
+  color: #333; /* Dark text color for better visibility */
+
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  margin: 0;
+  padding: 0 0px;
+}
+
+.table-container {
+  flex: 1 1 45%;
+  flex-wrap: wrap;
+  margin-right: 2%;
+  margin-bottom: 2%;
+  border: 1px solid #ccc;
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+table {
+  margin: 1px;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  font-size: 12px;
+  border: 1px solid #ccc;
+  padding: 1px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+tr:nth-child(even){
+  background-color: #f2f2f2;
+}
+
+.highlight{
+  font-weight: bold; 
+  background-color: lightblue;
+}
+
+.blank-row {
+  visibility: hidden;
+}
+
+.header {
+  background-color: #ffdf00; /* Gold header background */
+  padding: 20px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Titles styling */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Playfair Display", serif;
+  font-weight: bold; /* Make titles bold */
+  color: #333; /* Dark title text color */
+  line-height: 1.2; /* Adjust line height for better readability */
+  margin-bottom: 10px; /* Add some space below titles */
+}
+
+h1 {
+  font-size: 36px; /* Adjust font size for h1 */
+}
+
+h2 {
+  font-size: 24px; /* Adjust font size for h2 */
+}
+
+h3 {
+  font-size: 20px; /* Adjust font size for h3 */
+}
+
+/* You can continue with h4, h5, and h6 if needed */
+
+
+.header .logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333; /* Dark logo text color */
+}
+
+.navbar {
+  margin-top: 20px;
+}
+
+.navbar ul {
+  display: flex;
+  list-style: none;
+}
+
+.navbar li {
+  margin-right: 20px;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: #333; /* Dark navigation text color */
+  font-weight: bold;
+}
+
+.hero {
+  background-color: rgba(255, 223, 0, 0.5); /* Gold hero background with opacity */
+  padding: 100px 0;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 48px; /* Adjust title font size */
+  margin-bottom: 20px;
+  color: #333; /* Dark hero text color */
+}
+
+.hero p {
+  font-size: 20px;
+  color: #333; /* Dark hero text color */
+}
+
+.footer {
+  background-color: #ffdf00; /* Gold footer background */
+  padding: 20px 0;
+  text-align: center;
+}
+
+.footer p {
+  color: #333; /* Dark footer text color */
+}
+
+/* Adjust label styling */
+label {
+  font-family: "Playfair Display", serif;
+  font-optical-sizing: auto;
+  font-weight: normal;
+  font-size: larger;
+  font-style: bold;
+  color: #333; /* Dark label text color */
+}
+/* Basic Styles */
+
+.combobox {
+  margin: 3px;
+  position: relative;
+  display: inline-block;
+  width: 200px;
+  height: 40px;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* Dropdown Styles */
+
+.combobox-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 300px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-top: none;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  overflow-y: auto;
+  max-height: 300px;
+}
+
+.combobox-dropdown li {
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: #fff;
+}
+
+.combobox-dropdown li:hover {
+  background-color: #f4f4f4;
+}
+
+.combobox-dropdown li.selected {
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+/* Arrow Styles */
+
+.combobox-arrow {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  color: #333;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.combobox-arrow::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  width: 0;
+  height: 2px;
+  background-color: #333;
+  border-radius: 2px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.combobox-arrow.opened {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.combobox-arrow.opened::before {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+/*Textbox General Style*/
+
+.textbox {
+  margin: 3px;
+  position: relative;
+  display: inline-block;
+  width: 200px;
+  height: 40px;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+</style>
 <body>
 
     <script type="text/javascript" src="calculatorHC.js"></script>
