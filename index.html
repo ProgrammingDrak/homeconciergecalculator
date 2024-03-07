@@ -1,21 +1,38 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <title>Transaction Type and Commission Model Selection</title>
+    <title>Revenue Calculator</title>
 </head>
 <body>
-    <h1> make this change. </h1>
-    <h1>Transaction Type and Commission Model Selection</h1>
-    <label for="transactionType">Select Transaction Type:</label>
-    <select id="transactionType" onchange="onTransactionTypeChange()">
-        <option value="buyer">Buyer</option>
-        <option value="seller">Seller</option>
-    </select>
-    <br>
-    <label for="commissionModel">Select Commission Model:</label>
-    <select id="commissionModel"></select>
+    <header>
+        <h1>Revenue Calculator</h1>
+    </header>
 
-    <script type="text/javascript" src="calculatrhc.js"></script>
+    <section>
+        <label for="purchasePrice">Enter Purchase Price:</label>
+        <input type="number" id="purchasePrice">
+        <br>
+        <label for="transactionType">Select Transaction Type:</label>
+        <select id="transactionType" onchange="onTransactionTypeChange()">
+            <option value="buyer">Buyer</option>
+            <option value="seller">Seller</option>
+        </select>
+        <br>
+        <label for="commissionModel">Select Commission Model:</label>
+        <select id="commissionModel"></select>
+        <br>
+        <button onclick="calculateRevenue()">Calculate Revenue</button>
+        <br>
+        <!-- Output sections for additional information -->
+        <div id="cleverGrossRevenueOutput">Clever Gross Revenue: -</div>
+        <div id="partnerReferralOutput">Partner Referral: -</div>
+        <div id="cleverCashbackOutput">Clever Cashback: -</div>
+        <div id="revenueResultOutput">Revenue Result: -</div>
+    </section>
+
+    <script type="text/javascript" src="calculator.js"></script>
 </body>
 </html>
